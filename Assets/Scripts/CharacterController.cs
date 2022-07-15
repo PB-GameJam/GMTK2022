@@ -97,7 +97,7 @@ public class CharacterController : MonoBehaviour
         if (Application.isFocused == false)
             return;
 
-        _moveCommand();
+        /*_moveCommand();*/
         Look();
     }
 

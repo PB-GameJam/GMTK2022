@@ -55,6 +55,11 @@ public class PlayerInputHandler : MonoBehaviour
         /// </summary>
         public event Action Pressed;
 
+        /// <summary>
+        /// Event raised when the button is released.
+        /// </summary>
+        public event Action Released;
+
         public Action<InputAction.CallbackContext> InputCallback => OnInputUsed;
 
         private void OnInputUsed(InputAction.CallbackContext context)
@@ -63,6 +68,9 @@ public class PlayerInputHandler : MonoBehaviour
 
             if (context.performed)
                 Pressed?.Invoke();
+
+            if (context.canceled)
+                Released?.Invoke();
         }
     }
 

@@ -1051,12 +1051,12 @@ PrefabInstance:
     - target: {fileID: 3700850734753762766, guid: ccdc238df662f0440899a9dd0913f2e6,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000023165901
+      value: 0.000000023165901
       objectReference: {fileID: 0}
     - target: {fileID: 3700850734753762766, guid: ccdc238df662f0440899a9dd0913f2e6,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000074471513
+      value: -0.0000000074471513
       objectReference: {fileID: 0}
     - target: {fileID: 3700850735019134064, guid: ccdc238df662f0440899a9dd0913f2e6,
         type: 3}
@@ -1356,6 +1356,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517023141}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1576496636 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3226762078611192940, guid: 4534137031d22964780daf24845b690e,
+    type: 3}
+  m_PrefabInstance: {fileID: 271119527}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1576496641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576496636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67609e1599fd79641a8bf589fef74a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinLaunchSpeed: 30
+  MaxLaunchSpeed: 100
+  MaxJumpHoldTime: 0.5
 --- !u!1 &1591212887
 GameObject:
   m_ObjectHideFlags: 0
