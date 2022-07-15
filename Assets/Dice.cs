@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
+using System;
 
 public class Dice : MonoBehaviour
 {
@@ -10,8 +12,53 @@ public class Dice : MonoBehaviour
     [SerializeField] private float MinTorque;
     [SerializeField] private float MaxTorque;
     [SerializeField] private float GravitySpeed;
+    [SerializeField] private float DiceReadVelocityThreshold;
 
-    private bool HasBeenHit = false;
+    [SerializeField] private GameObject OnHitVFX;
+    [SerializeField] private AudioSource HitSource;
+
+    public event Action DiceSettled;
+
+    private CollisionTracker CollisionTracker => Registry.Lookup<CollisionTracker>();
+    private CinemachineVirtualCamera FollowCam
+    {
+        get
+        {
+            if (_FollowCam == null)
+                _FollowCam = CollisionTracker.GetComponent<CinemachineVirtualCamera>();
+
+            return _FollowCam;
+        }
+    }
+
+    private CinemachineVirtualCamera _FollowCam;
+
+
+    private bool HasBeenHit
+    {
+        get
+        {
+            return _HasBeenHit;
+        }
+
+        set
+        {
+            _HasBeenHit = value;
+
+            if (value == true)
+            {               
+                FollowCam.Priority = 100;
+                RBD.isKinematic = false;
+            }
+            else if (value == false)
+            {
+                FollowCam.Priority = 0;
+                RBD.isKinematic = true;
+            }
+        }
+    }
+
+    private bool _HasBeenHit;
 
     private Rigidbody RBD
     {
@@ -29,6 +76,15 @@ public class Dice : MonoBehaviour
     private void FixedUpdate()
     {
         RBD.velocity += Vector3.down * GravitySpeed;
+
+        if (HasBeenHit == false)
+            return;
+
+        if (RBD.velocity.magnitude < DiceReadVelocityThreshold)
+        {
+            HasBeenHit = false;
+        }
+
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -37,8 +93,7 @@ public class Dice : MonoBehaviour
             return;
 
         HasBeenHit = true;
-        RBD.isKinematic = false;
-
+        
         Vector3 speedVector = Random.insideUnitSphere;
         float lateralSpeed = Random.Range(-LateralSpeed, LateralSpeed);
         float verticalSpeed = Random.Range(MinVerticalSpeed, MaxVerticalSpeed);
