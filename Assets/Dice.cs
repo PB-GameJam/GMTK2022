@@ -20,19 +20,8 @@ public class Dice : MonoBehaviour
     public event Action DiceSettled;
 
     private CollisionTracker CollisionTracker => Registry.Lookup<CollisionTracker>();
-    private CinemachineVirtualCamera FollowCam
-    {
-        get
-        {
-            if (_FollowCam == null)
-                _FollowCam = CollisionTracker.GetComponent<CinemachineVirtualCamera>();
-
-            return _FollowCam;
-        }
-    }
-
-    private CinemachineVirtualCamera _FollowCam;
-
+    private CinemachineVirtualCamera FollowCam => Registry.Lookup<CinemachineVirtualCamera>(CollisionTracker);
+    private Rigidbody RBD => Registry.Lookup<Rigidbody>(this);
 
     private bool HasBeenHit
     {
@@ -59,19 +48,6 @@ public class Dice : MonoBehaviour
     }
 
     private bool _HasBeenHit;
-
-    private Rigidbody RBD
-    {
-        get
-        {
-            if (_RBD == null)
-                _RBD = GetComponentInChildren<Rigidbody>();
-
-            return _RBD;
-        }
-    }
-
-    private Rigidbody _RBD;
 
     private void FixedUpdate()
     {

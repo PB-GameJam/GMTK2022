@@ -12,7 +12,25 @@ using UnityObject = UnityEngine.Object;
 /// </summary>
 public static class Registry
 {
-    private static readonly Dictionary<Type, object> s_entries = new Dictionary<Type, object>();
+    private static readonly Dictionary<SearchFilter, object> s_entries = new Dictionary<SearchFilter, object>();
+
+    private struct SearchFilter : IEquatable<SearchFilter>
+    {
+        public readonly Type Type;
+        public readonly Component Target;
+
+        public SearchFilter(Type type, Component target = null)
+        {
+            Type = type;
+            Target = target;
+        }
+
+        public bool Equals(SearchFilter other)
+        {
+            return (Type == other.Type && 
+                Target == other.Target);
+        }
+    }
 
     /// <summary>
     /// Look up a reference using its type as a locator.
@@ -20,6 +38,9 @@ public static class Registry
     /// <typeparam name="T">
     /// A type derived from <see cref="UnityObject"/>.
     /// </typeparam>
+    /// <param name="target">
+    /// The target that hosts the component.
+    /// </param>
     /// <returns>
     /// Returns null if there are no instances of the given type. Otherwise,
     /// returns the last looked up instance of the given type.
@@ -27,18 +48,50 @@ public static class Registry
     public static T Lookup<T>() where T : UnityObject
     {
         Type type = typeof(T);
+        var filter = new SearchFilter(type);
 
-        if (!Contains<T>())
+        if (!Contains(filter))
         {
-            T reference = TryFind<T>();
+            T reference = TryFind<T>(filter);
             TryAdd(reference);
         }
-        else if (s_entries[type] == null)
+        else if (s_entries[filter] == null)
         {
-            s_entries[type] = TryFind<T>();
+            s_entries[filter] = TryFind<T>(filter);
         }
 
-        return (T)s_entries[type];
+        return (T)s_entries[filter];
+    }
+
+    /// <summary>
+    /// Look up a reference using its type as a locator.
+    /// </summary>
+    /// <typeparam name="T">
+    /// A type derived from <see cref="UnityObject"/>.
+    /// </typeparam>
+    /// <param name="target">
+    /// The target that hosts the component.
+    /// </param>
+    /// <returns>
+    /// Returns null if there are no instances of the given type. Otherwise,
+    /// returns the last looked up instance of the given type.
+    /// </returns>
+    public static T Lookup<T>(Component target) where T : Component
+    {
+        Type type = typeof(T);
+        var filter = new SearchFilter(type, target);
+
+        if (!Contains(filter))
+        {
+            T reference = TryFind<T>(filter);
+            TryAdd(reference, target);
+        }
+        else if (s_entries[filter] == null)
+        {
+            s_entries[filter] = TryFind<T>(filter);
+        }
+
+        return (T)s_entries[filter];
     }
 
     /// <summary>
@@ -53,12 +106,13 @@ public static class Registry
     /// <returns>
     /// Returns false if the registry already contains this type.
     /// </returns>
-    public static bool TryAdd<T>(T reference) where T : UnityObject
+    public static bool TryAdd<T>(T reference, Component target = null) where T : UnityObject
     {
-        if (s_entries.ContainsKey(typeof(T)))
+        var key = new SearchFilter(typeof(T), target);
+        if (Contains(key))
             return false;
 
-        s_entries.Add(typeof(T), reference);
+        s_entries.Add(key, reference);
 
         return true;
     }
@@ -72,28 +126,26 @@ public static class Registry
     /// <returns>
     /// Returns true if the registry already contains the given type.
     /// </returns>
-    public static bool Contains<T>() where T : UnityObject
+    public static bool Contains<T>(Component target = null) where T : Component
     {
-        return Contains(typeof(T));
+        var type = typeof(T);
+        var key = new SearchFilter(type, target);
+        return Contains(key);
     }
 
-    /// <summary>
-    /// Check to see whether the registry contains a certain type.
-    /// </summary>
-    /// <param name="type">
-    /// The type to check for.
-    /// </param>
-    /// <returns>
-    /// Returns true if the registry already contains the given type.
-    /// </returns>
-    public static bool Contains(Type type)
+    private static bool Contains(SearchFilter key)
     {
-        return s_entries.ContainsKey(type);
+        return s_entries.ContainsKey(key);
     }
 
-    private static T TryFind<T>() where T : UnityObject
+    private static T TryFind<T>(SearchFilter filter) where T : UnityObject
     {
-        var reference = UnityObject.FindObjectOfType<T>();
+        T reference = null;
+
+        if (filter.Target == null)
+            reference = UnityObject.FindObjectOfType<T>();
+        else
+            reference = filter.Target.GetComponentInChildren<T>();
 
         return reference;
     }
