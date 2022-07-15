@@ -106,7 +106,7 @@ public class ControlPlayer : MonoBehaviour
         ShowMouseCursor(false);
 
         _input.Jump.Pressed += Jump;
-        _input.ToggleMoveState.Pressed += ToggleMoveMode;
+        //_input.ToggleMoveState.Pressed += ToggleMoveMode;
     }
 
     private void OnDisable()
@@ -114,7 +114,7 @@ public class ControlPlayer : MonoBehaviour
         ShowMouseCursor(true);
 
         _input.Jump.Pressed -= Jump;
-        _input.ToggleMoveState.Pressed -= ToggleMoveMode;
+        //_input.ToggleMoveState.Pressed -= ToggleMoveMode;
     }
 
     private void OnApplicationFocus(bool focus)
