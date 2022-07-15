@@ -36,12 +36,14 @@ public class Dice : MonoBehaviour
 
             if (value == true)
             {
+                FindObjectOfType<GameManager>().PauseTimer();
                 FollowCam.Follow = transform;
                 FollowCam.Priority = 100;
                 RBD.isKinematic = false;
             }
             else if (value == false)
             {
+                FindObjectOfType<GameManager>().ResumeTimer();
                 FollowCam.Priority = 0;
                 RBD.isKinematic = true;
             }
@@ -61,11 +63,13 @@ public class Dice : MonoBehaviour
         {
             HasBeenHit = false;
         }
-
     }
 
     public void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider.tag != "Player")
+            return;
+
         if (HasBeenHit == true)
             return;
 

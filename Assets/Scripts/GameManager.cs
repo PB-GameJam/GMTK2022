@@ -18,16 +18,26 @@ public class GameManager : MonoBehaviour
 
     [Header("Game")]
     [SerializeField] private GameObject GameViewPrefab;
-
     [SerializeField] private CinemachineVirtualCamera GameViewCam;
     [SerializeField] private GameObject Player;
 
+    [Header("End")]
+    [SerializeField] private GameObject EndViewPrefab;
+    [SerializeField] private CinemachineVirtualCamera EndViewCam;
+
     private GameObject MenuUI;
     private GameObject GameUI;
+    private GameObject EndUI;
+
     private float CurrentTime;
     private TextMeshProUGUI TimerTMP;
 
+    private int PointsScored;
+    private TextMeshProUGUI PointsTMP;
+
     private bool RoundRunning = false;
+
+
     public void Start()
     {
         StartGame();
@@ -63,14 +73,13 @@ public class GameManager : MonoBehaviour
 
         GameUI = Instantiate(GameViewPrefab, UIContainer);
 
-        TimerTMP = GameUI.GetComponentInChildren<TimerTMP>().Timer;
+        TimerTMP = GameUI.GetComponentInChildren<MenuUIValues>().Timer;
         CurrentTime = RoundTime;       
         TimerTMP.text = CurrentTime.ToString();
 
         RoundRunning = true;
 
         Destroy(MenuUI);
-
     }
 
     public void UpdateRoundTime()
@@ -82,12 +91,36 @@ public class GameManager : MonoBehaviour
             EndRound();
     }
 
-    
+    public void ScorePoints(int _val)
+    {
+        PointsScored += _val;
+        PointsTMP.text = PointsScored.ToString();
+    }
+
+    public void PauseTimer()
+    {
+        RoundRunning = false;
+    }
+
+    public void ResumeTimer()
+    {
+        RoundRunning = true;
+    }
 
     public void EndRound()
     {
         RoundRunning = false;
 
+        Destroy(GameUI);
+        EndViewCam.Priority = 300;
+        EndUI = Instantiate(EndViewPrefab, UIContainer);
+
+        StartCoroutine(RestartGameCR());
+    }
+
+    IEnumerator RestartGameCR()
+    {
+        yield return new WaitForSeconds(2F);
         Player.GetComponentInChildren<PlayerInputHandler>().Jump.Released += RestartGame;
     }
 

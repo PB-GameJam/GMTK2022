@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TimerTMP : MonoBehaviour
+public class MenuUIValues : MonoBehaviour
 {
     public TextMeshProUGUI Timer;
+    public TextMeshProUGUI Points;
 }
