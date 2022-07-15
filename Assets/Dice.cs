@@ -9,7 +9,7 @@ public class Dice : MonoBehaviour
     [SerializeField] private float LateralSpeed;
     [SerializeField] private float MinTorque;
     [SerializeField] private float MaxTorque;
-    [SerializeField] private float Gravity;
+    [SerializeField] private float GravitySpeed;
 
     private bool HasBeenHit = false;
 
@@ -28,7 +28,7 @@ public class Dice : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RBD.velocity += Vector3.down * Gravity;
+        RBD.velocity += Vector3.down * GravitySpeed;
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -46,7 +46,7 @@ public class Dice : MonoBehaviour
 
         Vector3 torque = Random.insideUnitSphere * Random.Range(MinTorque, MaxTorque);
 
-        RBD.AddTorque(torque);
+        RBD.AddTorque(torque, ForceMode.Impulse);
 
         RBD.velocity = speedVector;
     }
