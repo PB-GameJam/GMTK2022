@@ -46,7 +46,8 @@ public class Dice : MonoBehaviour
             _HasBeenHit = value;
 
             if (value == true)
-            {               
+            {
+                FollowCam.Follow = transform;
                 FollowCam.Priority = 100;
                 RBD.isKinematic = false;
             }
