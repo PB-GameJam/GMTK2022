@@ -53,12 +53,8 @@ public class LaunchController : MonoBehaviour
 
     public void LaunchAttempt()
     {
-        
         if (GD.IsGrounded == false)
             return;
-
-        Debug.Log("Launch!!!");
-
 
         float interpolant = CurrentHoldTime / MaxJumpHoldTime;
         float launchSpeed = Mathf.Lerp(MinLaunchSpeed, MaxLaunchSpeed, interpolant);
@@ -72,7 +68,4 @@ public class LaunchController : MonoBehaviour
     {
         CurrentHoldTime = 0F;
     }
-
-
-
 }
