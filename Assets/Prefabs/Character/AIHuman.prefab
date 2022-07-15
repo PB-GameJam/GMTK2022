@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 7036407390725008896}
   - component: {fileID: 6742472608852816191}
   - component: {fileID: 8965714210878948236}
+  - component: {fileID: 7739990943542284151}
   m_Layer: 0
   m_Name: AIHuman
   m_TagString: Untagged
@@ -83,6 +84,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetDetectTrigger: {fileID: 6742472608852816191}
   TargetTag: Player
+  GoTowardTarget: 1
   WalkForce: 20
   JumpForce: 5
   TurnSpeed: 1.5
@@ -117,7 +119,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 6.75
+  m_Radius: 19.3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &8965714210878948236
 CapsuleCollider:
@@ -133,6 +135,23 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &7739990943542284151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7036407390725008906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9137b26ecf5097947ba673f94f461338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DisableBehaviors:
+  - {fileID: 7036407390725008899}
+  SquasherTag: Player
+  SquashScaleFactor: {x: 3, y: 0.1, z: 3}
+  SquashSpeed: 3
 --- !u!1 &7036407390865699687
 GameObject:
   m_ObjectHideFlags: 0
