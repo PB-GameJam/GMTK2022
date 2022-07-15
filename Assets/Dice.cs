@@ -94,12 +94,12 @@ public class Dice : MonoBehaviour
 
         HasBeenHit = true;
         
-        Vector3 speedVector = Random.insideUnitSphere;
-        float lateralSpeed = Random.Range(-LateralSpeed, LateralSpeed);
-        float verticalSpeed = Random.Range(MinVerticalSpeed, MaxVerticalSpeed);
+        Vector3 speedVector = UnityEngine.Random.insideUnitSphere;
+        float lateralSpeed = UnityEngine.Random.Range(-LateralSpeed, LateralSpeed);
+        float verticalSpeed = UnityEngine.Random.Range(MinVerticalSpeed, MaxVerticalSpeed);
         speedVector = new Vector3(lateralSpeed, verticalSpeed, lateralSpeed);
 
-        Vector3 torque = Random.insideUnitSphere * Random.Range(MinTorque, MaxTorque);
+        Vector3 torque = UnityEngine.Random.insideUnitSphere * UnityEngine.Random.Range(MinTorque, MaxTorque);
 
         RBD.AddTorque(torque, ForceMode.Impulse);
 
