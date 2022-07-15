@@ -10,7 +10,7 @@ using UnityEngine;
 /// Behavior that processes the player's inputs and moves the player avatar.
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
-public class CharacterController : MonoBehaviour
+public class ControlPlayer : MonoBehaviour
 {
     public enum MoveMode
     {

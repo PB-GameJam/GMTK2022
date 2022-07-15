@@ -9,6 +9,7 @@ public class Dice : MonoBehaviour
     [SerializeField] private float LateralSpeed;
     [SerializeField] private float MinTorque;
     [SerializeField] private float MaxTorque;
+    [SerializeField] private float Gravity;
 
     private bool HasBeenHit = false;
 
@@ -24,6 +25,11 @@ public class Dice : MonoBehaviour
     }
 
     private Rigidbody _RBD;
+
+    private void FixedUpdate()
+    {
+        RBD.velocity += Vector3.down * Gravity;
+    }
 
     public void OnCollisionEnter(Collision collision)
     {
