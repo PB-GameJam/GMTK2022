@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         MenuViewCam.Priority = 100;
-        // Spawn Start Game Menu
+
 
         // Attach Start Game Method to Input
     }
