@@ -105,7 +105,7 @@ public class ControlPlayer : MonoBehaviour
     {
         ShowMouseCursor(false);
 
-        _input.Jump.Pressed += Jump;
+        /*_input.Jump.Pressed += Jump;*/
         //_input.ToggleMoveState.Pressed += ToggleMoveMode;
     }
 
@@ -113,7 +113,7 @@ public class ControlPlayer : MonoBehaviour
     {
         ShowMouseCursor(true);
 
-        _input.Jump.Pressed -= Jump;
+        /*_input.Jump.Pressed -= Jump;*/
         //_input.ToggleMoveState.Pressed -= ToggleMoveMode;
     }
 
@@ -133,7 +133,7 @@ public class ControlPlayer : MonoBehaviour
 
         bool isFlightMode = (_moveMode == MoveMode.Flight);
         _rigidbody.useGravity = !isFlightMode;
-        _moveCommand = (isFlightMode) ? FlightMove : DefaultMove;
+        /*_moveCommand = (isFlightMode) ? FlightMove : DefaultMove;*/
         _playerCollider.isTrigger = isFlightMode;
         _rigidbody.velocity = Vector3.zero; // reset velocity when changing
     }

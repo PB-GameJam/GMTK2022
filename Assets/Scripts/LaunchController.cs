@@ -27,9 +27,14 @@ public class LaunchController : MonoBehaviour
 
     private Camera MainCam => Camera.main;
 
-    private void Awake()
+    private void OnEnable()
     {
         Input.Jump.Released += LaunchAttempt;
+    }
+
+    private void OnDisable()
+    {
+        Input.Jump.Released -= LaunchAttempt;
     }
 
     public void Update()
@@ -56,6 +61,7 @@ public class LaunchController : MonoBehaviour
         if (GD.IsGrounded == false)
             return;
 
+        
         float interpolant = CurrentHoldTime / MaxJumpHoldTime;
         float launchSpeed = Mathf.Lerp(MinLaunchSpeed, MaxLaunchSpeed, interpolant);
 

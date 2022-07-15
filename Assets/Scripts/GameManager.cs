@@ -7,26 +7,43 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private float RoundTime;
 
+    [Header("UI")]
+    [SerializeField] private Transform UIContainer;
+
     [Header("Menu")]
-    [SerializeField] GameObject MenuView;
+    [SerializeField] GameObject MenuViewPrefab;
     [SerializeField] private CinemachineVirtualCamera MenuViewCam;
 
     [Header("Game")]
-    [SerializeField] GameObject GameView;
+    [SerializeField] GameObject GameViewPrefab;
     [SerializeField] private CinemachineVirtualCamera GameViewCam;
+    [SerializeField] GameObject Player;
+
+    private GameObject MenuUI;
+    private GameObject GameUI;
 
     public void Start()
     {
         MenuViewCam.Priority = 100;
+        MenuUI = Instantiate(MenuViewPrefab, UIContainer);
 
-
-        // Attach Start Game Method to Input
+        Player.GetComponent<ControlPlayer>().enabled = false;
+        Player.GetComponent<LaunchController>().enabled = false;
+        Player.GetComponentInChildren<PlayerInputHandler>().Jump.Released += StartRound;
+        
     }
 
     public void StartRound()
     {
         MenuViewCam.Priority = 0;
-        // Remove Start Game Method to Input
+
+        Player.GetComponentInChildren<PlayerInputHandler>().Jump.Released -= StartRound;
+
+        Player.GetComponent<ControlPlayer>().enabled = true;
+        Player.GetComponent<LaunchController>().enabled = true;
+
+        Destroy(MenuUI);
+        GameUI = Instantiate(GameViewPrefab, UIContainer);
     }
 
     public void EndRound()
