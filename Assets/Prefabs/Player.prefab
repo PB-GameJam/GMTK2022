@@ -91,10 +91,10 @@ MonoBehaviour:
   _pitchSensitivity: 0.5
   _yawSensitivity: 0.8
   _invertYaw: 0
-  _invertPitch: 0
+  _invertPitch: 1
   _jumpforce: 8
   _input: {fileID: 3226762079888893796}
-  _cameraTarget: {fileID: 0}
+  _cameraTarget: {fileID: 3226762078071702263}
   _groundDetector: {fileID: 3226762079830588031}
   _playerCollider: {fileID: 3226762078611192941}
 --- !u!136 &3226762078611192941
