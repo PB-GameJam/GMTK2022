@@ -8,6 +8,7 @@ public class HumanAI : MonoBehaviour
 {
     [SerializeField] private Collider TargetDetectTrigger;
     [SerializeField] private string TargetTag = "Player";
+    [SerializeField] private bool GoTowardTarget = false;
 
     [SerializeField] private float WalkForce = 5f;
     [SerializeField] private float JumpForce = 5f;
@@ -56,6 +57,10 @@ public class HumanAI : MonoBehaviour
         {
             WalkDir = TargetTrans.position - transform.position;
             WalkDir.y = 0;
+
+            //if set to move away from the target, invert the direction
+            if (!GoTowardTarget)
+                WalkDir.Scale(new Vector3(-1f, 0f, -1f));
         }
         else if (MoveTimer >= MoveTimerTarget)
             SetRandWalkDir();
