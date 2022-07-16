@@ -23,10 +23,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject GameViewPrefab;
     [SerializeField] private CinemachineVirtualCamera GameViewCam;
     [SerializeField] private GameObject Player;
+    [SerializeField] private AudioClip StartClip;
 
     [Header("End")]
     [SerializeField] private GameObject EndViewPrefab;
     [SerializeField] private CinemachineVirtualCamera EndViewCam;
+    [SerializeField] private AudioClip EndClip;
 
     private GameObject MenuUI;
     private GameObject GameUI;
@@ -73,20 +75,18 @@ public class GameManager : MonoBehaviour
                 Player.GetComponent<Rigidbody>().isKinematic = false;
             });
 
-
-        
-
-
         RoundRunning = false;
     }
     public void StartRound()
     {
         MenuViewCam.Priority = 0;
 
-        Player.GetComponentInChildren<PlayerInputHandler>().Jump.Released -= StartRound;
+        AudioSource.PlayClipAtPoint(StartClip, Camera.main.transform.position);
 
+        Player.GetComponentInChildren<PlayerInputHandler>().Jump.Released -= StartRound;
         Player.GetComponent<ControlPlayer>().enabled = true;
         Player.GetComponent<LaunchController>().enabled = true;
+        Player.GetComponent<Rigidbody>().velocity = (Player.transform.forward + Vector3.up) * 20F;
 
         GameUI = Instantiate(GameViewPrefab, UIContainer);
         GameUI.GetComponent<CanvasGroup>().DOFade(1F, 0.5F)
@@ -129,6 +129,8 @@ public class GameManager : MonoBehaviour
     public void EndRound()
     {
         RoundRunning = false;
+
+        AudioSource.PlayClipAtPoint(EndClip, Camera.main.transform.position);
 
         Destroy(GameUI);
         EndViewCam.Priority = 300;

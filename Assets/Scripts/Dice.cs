@@ -11,9 +11,9 @@ public class Dice : MonoBehaviour
     [SerializeField] private float MaxTorque;
     [SerializeField] private float GravitySpeed;
     [SerializeField] private float UpwardForce;
-
-    [SerializeField] private GameObject OnHitVFX;
-    [SerializeField] private AudioSource HitSource;
+    [SerializeField] private float MovementEpsilon = 1F;
+    [SerializeField] private float DiceSideCheckTime = 4F;
+    
 
     [Range(0F, 1F)] [SerializeField] private float DampeningFactor;
 
@@ -26,7 +26,7 @@ public class Dice : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RBD.velocity += Vector3.down * GravitySpeed;
+        RBD.velocity += Vector3.down * GravitySpeed;    
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -41,5 +41,22 @@ public class Dice : MonoBehaviour
         RBD.AddForce(knockbackForce, ForceMode.Impulse);
         RBD.AddTorque(torque, ForceMode.Impulse);
 
+        StartCoroutine(CheckDiceSideCR(collision.collider.gameObject));
     }
+
+    IEnumerator CheckDiceSideCR(GameObject _player)
+    {
+        // Add some UX visuals for the dice
+
+        yield return new WaitForSeconds(DiceSideCheckTime);
+
+        CheckDiceSide(_player);
+    }
+
+    public void CheckDiceSide(GameObject _player)
+    {
+        Debug.Log("Checking Dice Side for Powerup for " + _player);
+    }
+
+
 }

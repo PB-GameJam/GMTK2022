@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class LaunchController : MonoBehaviour
 {
-    [SerializeField] private float MinLaunchSpeed;
     [SerializeField] private float MaxLaunchSpeed;
-    [SerializeField] private float MaxJumpHoldTime;
-
-    private float CurrentHoldTime;
+    [SerializeField] private float VerticalSpeed;
+    [SerializeField] private AudioClip LaunchClip;
 
     private GroundDetector GD => Registry.Lookup<GroundDetector>();
     private PlayerInputHandler Input => Registry.Lookup<PlayerInputHandler>();
@@ -29,31 +27,12 @@ public class LaunchController : MonoBehaviour
 
     private void OnEnable()
     {
-        Input.Jump.Released += LaunchAttempt;
+        Input.Jump.Pressed += LaunchAttempt;
     }
 
     private void OnDisable()
     {
-        Input.Jump.Released -= LaunchAttempt;
-    }
-
-    public void Update()
-    {
-        if (GD.IsGrounded == false)
-            return;
-
-        if (Input.Jump.IsDown == true)
-            ChargeJump();
-    }
-
-    public void ChargeJump()
-    {
-        CurrentHoldTime += Time.deltaTime;
-
-        if (CurrentHoldTime > MaxJumpHoldTime)
-        {
-            LaunchAttempt();
-        }
+        Input.Jump.Pressed -= LaunchAttempt;
     }
 
     public void LaunchAttempt()
@@ -61,17 +40,9 @@ public class LaunchController : MonoBehaviour
         if (GD.IsGrounded == false)
             return;
 
-        
-        float interpolant = CurrentHoldTime / MaxJumpHoldTime;
-        float launchSpeed = Mathf.Lerp(MinLaunchSpeed, MaxLaunchSpeed, interpolant);
+        RBD.velocity = MainCam.transform.forward * MaxLaunchSpeed;
+        RBD.velocity += Vector3.up * VerticalSpeed;
 
-        RBD.velocity = MainCam.transform.forward * launchSpeed;
-
-        StopCharging();
-    }
-
-    public void StopCharging()
-    {
-        CurrentHoldTime = 0F;
+        AudioSource.PlayClipAtPoint(LaunchClip, Camera.main.transform.position);
     }
 }
