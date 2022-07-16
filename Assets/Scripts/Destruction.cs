@@ -12,7 +12,8 @@ public class Destruction : MonoBehaviour
     [Header("Squish Variables")]
     [SerializeField] private bool canSquish = true;
     [SerializeField] private float squishDuration = 5;
-    [SerializeField] private float squishSize = 0.1f;
+    [SerializeField] private float squishSizeVertical = 0.1f;
+    [SerializeField] private float squishSizeHorizontal = 2;
     [SerializeField] private Ease EaseType;
 
     [Header("When Destroyed")]
@@ -28,6 +29,10 @@ public class Destruction : MonoBehaviour
     void Start()
     {
         AS = GetComponent<AudioSource>();
+        if (AS == null)
+        {
+            AS = gameObject.AddComponent(typeof(AudioSource)) as AudioSource;
+        }
         gameManager = FindObjectOfType<GameManager>();
     }
 
@@ -50,8 +55,9 @@ public class Destruction : MonoBehaviour
 
         if (canSquish)
         {
-            transform.DOScaleY(squishSize, squishDuration).SetEase(EaseType);
-
+            transform.DOScaleY(squishSizeVertical, squishDuration).SetEase(EaseType);
+            transform.DOScaleX(squishSizeHorizontal, squishDuration).SetEase(EaseType);
+            transform.DOScaleZ(squishSizeHorizontal, squishDuration).SetEase(EaseType);
         }
     }
 
