@@ -133,6 +133,6 @@ MonoBehaviour:
   MinTorque: 100
   MaxTorque: 300
   GravitySpeed: 3
-  DiceReadVelocityThreshold: 0
+  DiceReadVelocityThreshold: 0.1
   OnHitVFX: {fileID: 0}
   HitSource: {fileID: 0}
