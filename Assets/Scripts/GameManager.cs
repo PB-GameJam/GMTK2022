@@ -73,9 +73,16 @@ public class GameManager : MonoBehaviour
 
         GameUI = Instantiate(GameViewPrefab, UIContainer);
 
+        //Timer TMP
         TimerTMP = GameUI.GetComponentInChildren<MenuUIValues>().Timer;
-        CurrentTime = RoundTime;       
+        CurrentTime = RoundTime;
         TimerTMP.text = CurrentTime.ToString();
+
+        //Points TMP
+        PointsTMP = GameUI.GetComponentInChildren<MenuUIValues>().Points;
+        PointsScored = 0;
+        PointsTMP.text = PointsScored.ToString();
+
 
         RoundRunning = true;
 
@@ -91,6 +98,11 @@ public class GameManager : MonoBehaviour
             EndRound();
     }
 
+    //Call this to add points
+    //Player gets points by hitting things
+    //Give points when the player creates desctruction
+    //Has player hit this? Then give points
+    //Use a event to trigger on collision. Then create different scripts that look for this descruction event. Also gives points
     public void ScorePoints(int _val)
     {
         PointsScored += _val;
@@ -113,7 +125,7 @@ public class GameManager : MonoBehaviour
 
         Destroy(GameUI);
         EndViewCam.Priority = 300;
-        EndUI = Instantiate(EndViewPrefab, UIContainer);
+        EndUI = Instantiate(EndViewPrefab, UIContainer); //This prefab is the end view
 
         StartCoroutine(RestartGameCR());
     }
