@@ -31,6 +31,8 @@ public class Dice : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
+
+
         if (collision.collider.tag != "Player")
             return;
 
@@ -40,6 +42,8 @@ public class Dice : MonoBehaviour
         Vector3 torque = UnityEngine.Random.insideUnitSphere * UnityEngine.Random.Range(MinTorque, MaxTorque);
         RBD.AddForce(knockbackForce, ForceMode.Impulse);
         RBD.AddTorque(torque, ForceMode.Impulse);
+
+        GetComponentInChildren<ParticleSystem>().Play();
 
         StartCoroutine(CheckDiceSideCR(collision.collider.gameObject));
     }
