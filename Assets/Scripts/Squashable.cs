@@ -15,6 +15,8 @@ public class Squashable : MonoBehaviour
 
     [SerializeField] private float SquashSpeed = 3f;
 
+    [SerializeField] List<AudioClip> SquashSounds = new List<AudioClip>();
+
     private Collider[] DisableColliders;
     private Rigidbody RB;
 
@@ -52,6 +54,9 @@ public class Squashable : MonoBehaviour
                 RB.velocity = Vector3.zero;
                 RB.freezeRotation = true;
             }
+
+            // Play squash sounds
+            AudioSource.PlayClipAtPoint(SquashSounds[Random.Range(0, SquashSounds.Count - 1)], Camera.main.transform.position);
 
             //disable all other components and face the object upright
             transform.up = Vector3.up;

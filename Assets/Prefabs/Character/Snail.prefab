@@ -4999,8 +4999,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67609e1599fd79641a8bf589fef74a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxLaunchSpeed: 80
-  VerticalSpeed: 0
+  MaxLaunchSpeed: 40
+  VerticalSpeed: 20
+  LaunchClip: {fileID: 8300000, guid: d938669199346e041b19748c307da3bc, type: 3}
 --- !u!135 &1885160104
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5012,8 +5013,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.6402513
-  m_Center: {x: 0, y: -0.3, z: 0}
+  m_Radius: 0.560022
+  m_Center: {x: 0, y: -0.21977079, z: 0}
 --- !u!114 &1885160108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5554,6 +5555,41 @@ PrefabInstance:
         type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654308117890195225, guid: ff1f8094486a3ec41b37b5a8692ad889,
+        type: 3}
+      propertyPath: UVModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654308117890195225, guid: ff1f8094486a3ec41b37b5a8692ad889,
+        type: 3}
+      propertyPath: TrailModule.lifetime.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654308117890195225, guid: ff1f8094486a3ec41b37b5a8692ad889,
+        type: 3}
+      propertyPath: TrailModule.inheritParticleColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654308117890195225, guid: ff1f8094486a3ec41b37b5a8692ad889,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654308117890195225, guid: ff1f8094486a3ec41b37b5a8692ad889,
+        type: 3}
+      propertyPath: TrailModule.colorOverLifetime.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654308117890195225, guid: ff1f8094486a3ec41b37b5a8692ad889,
+        type: 3}
+      propertyPath: TrailModule.colorOverLifetime.maxColor.r
+      value: 0.14761901
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654308117890195225, guid: ff1f8094486a3ec41b37b5a8692ad889,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7203991869588375189, guid: ff1f8094486a3ec41b37b5a8692ad889,
         type: 3}

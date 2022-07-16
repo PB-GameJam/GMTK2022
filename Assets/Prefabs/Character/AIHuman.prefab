@@ -152,6 +152,12 @@ MonoBehaviour:
   SquasherTag: Player
   SquashScaleFactor: {x: 3, y: 0.1, z: 3}
   SquashSpeed: 3
+  SquashSounds:
+  - {fileID: 8300000, guid: 058b209a0222d26418cb94e630ce7a71, type: 3}
+  - {fileID: 8300000, guid: d2cf08a0a93f97549893836fcd1d7655, type: 3}
+  - {fileID: 8300000, guid: 021d6c82e7fdd934eb865c1c1b966d7f, type: 3}
+  - {fileID: 8300000, guid: b83b2833fd666ea438ef6b371415c4a8, type: 3}
+  - {fileID: 8300000, guid: c19dff3140978f248a780304800ecf57, type: 3}
 --- !u!1 &7036407390865699687
 GameObject:
   m_ObjectHideFlags: 0
