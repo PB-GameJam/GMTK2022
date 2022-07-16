@@ -13,6 +13,7 @@ public class Dice : MonoBehaviour
     [SerializeField] private float MaxTorque;
     [SerializeField] private float GravitySpeed;
     [SerializeField] private float DiceReadVelocityThreshold;
+    [SerializeField] private float DiceHoldTime;
 
     [SerializeField] private GameObject OnHitVFX;
     [SerializeField] private AudioSource HitSource;
@@ -22,6 +23,10 @@ public class Dice : MonoBehaviour
     private CollisionTracker CollisionTracker => Registry.Lookup<CollisionTracker>();
     private CinemachineVirtualCamera FollowCam => Registry.Lookup<CinemachineVirtualCamera>(CollisionTracker);
     private Rigidbody RBD => Registry.Lookup<Rigidbody>(this);
+
+    private float PreviousSpeed;
+    private float SpeedDifferential;
+    private float HoldTimer;
 
     private bool HasBeenHit
     {
@@ -45,6 +50,7 @@ public class Dice : MonoBehaviour
             {
                 FindObjectOfType<GameManager>().ResumeTimer();
                 FollowCam.Priority = 0;
+                HoldTimer = 0F;
                 RBD.isKinematic = true;
             }
         }
@@ -54,14 +60,22 @@ public class Dice : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RBD.velocity += Vector3.down * GravitySpeed;
-
         if (HasBeenHit == false)
             return;
 
-        if (RBD.velocity.magnitude < DiceReadVelocityThreshold)
+        RBD.velocity += Vector3.down * GravitySpeed;
+
+        SpeedDifferential = RBD.velocity.magnitude - PreviousSpeed;
+        PreviousSpeed = RBD.velocity.magnitude;
+
+        if (SpeedDifferential < DiceReadVelocityThreshold)
         {
-            HasBeenHit = false;
+            HoldTimer += Time.deltaTime;
+
+            if (HoldTimer > DiceHoldTime)
+            {
+                HasBeenHit = false;
+            }
         }
     }
 
