@@ -6,77 +6,27 @@ using System;
 
 public class Dice : MonoBehaviour
 {
-    [SerializeField] private float MinVerticalSpeed;
-    [SerializeField] private float MaxVerticalSpeed;
-    [SerializeField] private float LateralSpeed;
+    [SerializeField] private float SelfKnockback;
     [SerializeField] private float MinTorque;
     [SerializeField] private float MaxTorque;
     [SerializeField] private float GravitySpeed;
-    [SerializeField] private float DiceReadVelocityThreshold;
-    [SerializeField] private float DiceHoldTime;
+    [SerializeField] private float UpwardForce;
 
     [SerializeField] private GameObject OnHitVFX;
     [SerializeField] private AudioSource HitSource;
 
+    [Range(0F, 1F)] [SerializeField] private float DampeningFactor;
+
     public event Action DiceSettled;
 
     private CollisionTracker CollisionTracker => Registry.Lookup<CollisionTracker>();
-    private CinemachineVirtualCamera FollowCam => Registry.Lookup<CinemachineVirtualCamera>(CollisionTracker);
     private Rigidbody RBD => Registry.Lookup<Rigidbody>(this);
-
-    private float PreviousSpeed;
-    private float SpeedDifferential;
-    private float HoldTimer;
-
-    private bool HasBeenHit
-    {
-        get
-        {
-            return _HasBeenHit;
-        }
-
-        set
-        {
-            _HasBeenHit = value;
-
-            if (value == true)
-            {
-                FindObjectOfType<GameManager>().PauseTimer();
-                FollowCam.Follow = transform;
-                FollowCam.Priority = 100;
-                RBD.isKinematic = false;
-            }
-            else if (value == false)
-            {
-                FindObjectOfType<GameManager>().ResumeTimer();
-                FollowCam.Priority = 0;
-                HoldTimer = 0F;
-                RBD.isKinematic = true;
-            }
-        }
-    }
 
     private bool _HasBeenHit;
 
     private void FixedUpdate()
     {
-        if (HasBeenHit == false)
-            return;
-
         RBD.velocity += Vector3.down * GravitySpeed;
-
-        SpeedDifferential = RBD.velocity.magnitude - PreviousSpeed;
-        PreviousSpeed = RBD.velocity.magnitude;
-
-        if (SpeedDifferential < DiceReadVelocityThreshold)
-        {
-            HoldTimer += Time.deltaTime;
-
-            if (HoldTimer > DiceHoldTime)
-            {
-                HasBeenHit = false;
-            }
-        }
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -84,20 +34,12 @@ public class Dice : MonoBehaviour
         if (collision.collider.tag != "Player")
             return;
 
-        if (HasBeenHit == true)
-            return;
-
-        HasBeenHit = true;
-        
-        Vector3 speedVector = UnityEngine.Random.insideUnitSphere;
-        float lateralSpeed = UnityEngine.Random.Range(-LateralSpeed, LateralSpeed);
-        float verticalSpeed = UnityEngine.Random.Range(MinVerticalSpeed, MaxVerticalSpeed);
-        speedVector = new Vector3(lateralSpeed, verticalSpeed, lateralSpeed);
-
+        collision.collider.GetComponent<Rigidbody>().velocity *= DampeningFactor;
+        Vector3 knockbackForce = (transform.position - collision.collider.transform.position).normalized * SelfKnockback;
+        knockbackForce += Vector3.up * UpwardForce;
         Vector3 torque = UnityEngine.Random.insideUnitSphere * UnityEngine.Random.Range(MinTorque, MaxTorque);
-
+        RBD.AddForce(knockbackForce, ForceMode.Impulse);
         RBD.AddTorque(torque, ForceMode.Impulse);
 
-        RBD.velocity = speedVector;
     }
 }

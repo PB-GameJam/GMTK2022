@@ -4,6 +4,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Component used to track objects that the player is standing on.
@@ -11,6 +12,9 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class GroundDetector : MonoBehaviour
 {
+    public UnityEvent Grounded = new UnityEvent();
+    public UnityEvent Ungrounded = new UnityEvent();
+
     [SerializeField]
     [HideInInspector]
     private Collider _collider;
@@ -39,6 +43,9 @@ public class GroundDetector : MonoBehaviour
             return;
 
         _overlapColliders.Add(other);
+
+        if (IsGrounded == true)
+            Grounded?.Invoke();
     }
 
     private void OnTriggerExit(Collider other)
@@ -47,5 +54,9 @@ public class GroundDetector : MonoBehaviour
             return;
 
         _overlapColliders.Remove(other);
+
+        if (IsGrounded == false)
+            Ungrounded?.Invoke();
+
     }
 }
