@@ -4,6 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
     [Header("Menu")]
     [SerializeField] private GameObject MenuViewPrefab;
     [SerializeField] private CinemachineVirtualCamera MenuViewCam;
+    [SerializeField] Vector3 StartingPosition;
+    [SerializeField] Vector3 EndingPosition;
 
     [Header("Game")]
     [SerializeField] private GameObject GameViewPrefab;
@@ -54,11 +57,25 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         MenuViewCam.Priority = 100;
-        MenuUI = Instantiate(MenuViewPrefab, UIContainer);
 
         Player.GetComponent<ControlPlayer>().enabled = false;
         Player.GetComponent<LaunchController>().enabled = false;
-        Player.GetComponentInChildren<PlayerInputHandler>().Jump.Released += StartRound;
+        Player.GetComponent<Rigidbody>().isKinematic = true;
+
+        Player.transform.localPosition = StartingPosition;
+        Player.transform.DOLocalMove(EndingPosition, 2F)
+            .SetEase(Ease.OutQuad)
+            .OnComplete(() =>
+            {
+                MenuUI = Instantiate(MenuViewPrefab, UIContainer);
+                MenuUI.GetComponent<CanvasGroup>().DOFade(1F, 0.5F).SetEase(Ease.OutQuad);
+                Player.GetComponentInChildren<PlayerInputHandler>().Jump.Released += StartRound;
+                Player.GetComponent<Rigidbody>().isKinematic = false;
+            });
+
+
+        
+
 
         RoundRunning = false;
     }
@@ -72,6 +89,8 @@ public class GameManager : MonoBehaviour
         Player.GetComponent<LaunchController>().enabled = true;
 
         GameUI = Instantiate(GameViewPrefab, UIContainer);
+        GameUI.GetComponent<CanvasGroup>().DOFade(1F, 0.5F)
+            .SetEase(Ease.OutQuad);
 
         TimerTMP = GameUI.GetComponentInChildren<MenuUIValues>().Timer;
         CurrentTime = RoundTime;       
@@ -114,6 +133,8 @@ public class GameManager : MonoBehaviour
         Destroy(GameUI);
         EndViewCam.Priority = 300;
         EndUI = Instantiate(EndViewPrefab, UIContainer);
+        EndUI.GetComponent<CanvasGroup>().DOFade(1F, 0.5F)
+            .SetEase(Ease.OutQuad);
 
         StartCoroutine(RestartGameCR());
     }
