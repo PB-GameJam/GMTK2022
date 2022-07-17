@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ff49aa2fb022149b7036f70767005e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score: 5
+  Score: 15
   canSquish: 0
   squishDuration: 5
   squishSizeVertical: 0.1
