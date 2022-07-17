@@ -167,7 +167,6 @@ Transform:
   - {fileID: 4552232878690977435}
   - {fileID: 4552232879199067774}
   - {fileID: 4552232877965508259}
-  - {fileID: 4552232878258422239}
   - {fileID: 4552232878460624628}
   - {fileID: 4552232878331205509}
   m_Father: {fileID: 4552232879543735473}
@@ -884,6 +883,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
         type: 3}
+      propertyPath: UpwardForce
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: PowerupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e925e4a3ddc5c214bb28a8129c5ce215, type: 3}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: DiceBounceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 13f4d78753c47d6439e75cfc2267818c, type: 3}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
       propertyPath: MaxVerticalSpeed
       value: 80
       objectReference: {fileID: 0}
@@ -951,6 +965,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dice (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6982482878283760537, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d13fff8e29d9ec7479e6742eac87efa1, type: 3}
@@ -2092,7 +2111,7 @@ PrefabInstance:
     - target: {fileID: 4829272535046416229, guid: 8144e0201aa111d44b99b1390b499b40,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5347212225012557208, guid: 8144e0201aa111d44b99b1390b499b40,
         type: 3}
@@ -3398,6 +3417,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
         type: 3}
+      propertyPath: UpwardForce
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: PowerupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e925e4a3ddc5c214bb28a8129c5ce215, type: 3}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: DiceBounceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 13f4d78753c47d6439e75cfc2267818c, type: 3}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
       propertyPath: MaxVerticalSpeed
       value: 80
       objectReference: {fileID: 0}
@@ -3465,6 +3499,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dice (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6982482878283760537, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d13fff8e29d9ec7479e6742eac87efa1, type: 3}
@@ -7216,81 +7255,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4552232878254380338}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4552232878258579009
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 4552232878041301978}
-    m_Modifications:
-    - target: {fileID: 189882, guid: ee6af68a3d2c1864ebc6cfc3be82d851, type: 3}
-      propertyPath: m_Name
-      value: SM_Env_Tree_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 419742, guid: ee6af68a3d2c1864ebc6cfc3be82d851, type: 3}
-      propertyPath: m_RootOrder
-      value: 139
-      objectReference: {fileID: 0}
-    - target: {fileID: 419742, guid: ee6af68a3d2c1864ebc6cfc3be82d851, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.35706756
-      objectReference: {fileID: 0}
-    - target: {fileID: 419742, guid: ee6af68a3d2c1864ebc6cfc3be82d851, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.35706756
-      objectReference: {fileID: 0}
-    - target: {fileID: 419742, guid: ee6af68a3d2c1864ebc6cfc3be82d851, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.35706756
-      objectReference: {fileID: 0}
-    - target: {fileID: 419742, guid: ee6af68a3d2c1864ebc6cfc3be82d851, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.2448323
-      objectReference: {fileID: 0}
-    - target: {fileID: 419742, guid: ee6af68a3d2c1864ebc6cfc3be82d851, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.50000024
-      objectReference: {fileID: 0}
-    - target: {fileID: 419742, guid: ee6af68a3d2c1864ebc6cfc3be82d851, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2.878268
-      objectReference: {fileID: 0}
-    - target: {fileID: 419742, guid: ee6af68a3d2c1864ebc6cfc3be82d851, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 419742, guid: ee6af68a3d2c1864ebc6cfc3be82d851, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 419742, guid: ee6af68a3d2c1864ebc6cfc3be82d851, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 419742, guid: ee6af68a3d2c1864ebc6cfc3be82d851, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 419742, guid: ee6af68a3d2c1864ebc6cfc3be82d851, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 419742, guid: ee6af68a3d2c1864ebc6cfc3be82d851, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 419742, guid: ee6af68a3d2c1864ebc6cfc3be82d851, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ee6af68a3d2c1864ebc6cfc3be82d851, type: 3}
---- !u!4 &4552232878258422239 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 419742, guid: ee6af68a3d2c1864ebc6cfc3be82d851,
-    type: 3}
-  m_PrefabInstance: {fileID: 4552232878258579009}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4552232878261085856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7555,6 +7519,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
         type: 3}
+      propertyPath: UpwardForce
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: PowerupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e925e4a3ddc5c214bb28a8129c5ce215, type: 3}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: DiceBounceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 13f4d78753c47d6439e75cfc2267818c, type: 3}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
       propertyPath: MaxVerticalSpeed
       value: 80
       objectReference: {fileID: 0}
@@ -7622,6 +7601,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dice (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6982482878283760537, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d13fff8e29d9ec7479e6742eac87efa1, type: 3}
@@ -8274,7 +8258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 427308, guid: c50789636e1fc5c4b8a37e2700e4a3c1, type: 3}
       propertyPath: m_RootOrder
-      value: 141
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 427308, guid: c50789636e1fc5c4b8a37e2700e4a3c1, type: 3}
       propertyPath: m_LocalScale.x
@@ -10693,7 +10677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 423272, guid: d93817f79a1e01242b20f7081cbfa384, type: 3}
       propertyPath: m_RootOrder
-      value: 140
+      value: 139
       objectReference: {fileID: 0}
     - target: {fileID: 423272, guid: d93817f79a1e01242b20f7081cbfa384, type: 3}
       propertyPath: m_LocalScale.x
@@ -12079,6 +12063,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
         type: 3}
+      propertyPath: UpwardForce
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: PowerupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e925e4a3ddc5c214bb28a8129c5ce215, type: 3}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: DiceBounceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 13f4d78753c47d6439e75cfc2267818c, type: 3}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
       propertyPath: MaxVerticalSpeed
       value: 80
       objectReference: {fileID: 0}
@@ -12146,6 +12145,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dice (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6982482878283760537, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d13fff8e29d9ec7479e6742eac87efa1, type: 3}
@@ -20280,6 +20284,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
         type: 3}
+      propertyPath: UpwardForce
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: PowerupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e925e4a3ddc5c214bb28a8129c5ce215, type: 3}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: DiceBounceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 13f4d78753c47d6439e75cfc2267818c, type: 3}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
       propertyPath: MaxVerticalSpeed
       value: 80
       objectReference: {fileID: 0}
@@ -20347,6 +20366,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dice (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6982482878283760537, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d13fff8e29d9ec7479e6742eac87efa1, type: 3}
@@ -29066,6 +29090,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
         type: 3}
+      propertyPath: UpwardForce
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: PowerupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e925e4a3ddc5c214bb28a8129c5ce215, type: 3}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: DiceBounceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 13f4d78753c47d6439e75cfc2267818c, type: 3}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
       propertyPath: MaxVerticalSpeed
       value: 80
       objectReference: {fileID: 0}
@@ -29133,6 +29172,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dice (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6982482878283760537, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d13fff8e29d9ec7479e6742eac87efa1, type: 3}
@@ -37970,6 +38014,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
         type: 3}
+      propertyPath: UpwardForce
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: PowerupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e925e4a3ddc5c214bb28a8129c5ce215, type: 3}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: DiceBounceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 13f4d78753c47d6439e75cfc2267818c, type: 3}
+    - target: {fileID: 5373978120622618582, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
       propertyPath: MaxVerticalSpeed
       value: 80
       objectReference: {fileID: 0}
@@ -38037,6 +38096,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dice
+      objectReference: {fileID: 0}
+    - target: {fileID: 6982482878283760537, guid: d13fff8e29d9ec7479e6742eac87efa1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d13fff8e29d9ec7479e6742eac87efa1, type: 3}

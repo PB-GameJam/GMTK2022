@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
 
         RoundRunning = false;
     }
+
     public void StartRound()
     {
         MenuViewCam.Priority = 0;
