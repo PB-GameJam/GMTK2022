@@ -10,8 +10,13 @@ public class LaunchController : MonoBehaviour
 
     public float LaunchSpeedMultipler = 1f;
 
-    private GroundDetector GD => Registry.Lookup<GroundDetector>();
-    private PlayerInputHandler Input => Registry.Lookup<PlayerInputHandler>();
+    //Switched out the registry methods because it wasn't working when the scene is reloaded, using getcomponentinchildren for now
+    //private GroundDetector GD => Registry.Lookup<GroundDetector>();
+    //private PlayerInputHandler Input => Registry.Lookup<PlayerInputHandler>();
+    
+    private GroundDetector GD;
+    private PlayerInputHandler Input;
+    
     private Rigidbody RBD
     {
         get
@@ -26,6 +31,12 @@ public class LaunchController : MonoBehaviour
     private Rigidbody _RBD;
 
     private Camera MainCam => Camera.main;
+
+    private void Awake()
+    {
+        GD = GetComponentInChildren<GroundDetector>();
+        Input = GetComponentInChildren<PlayerInputHandler>();
+    }
 
     private void OnEnable()
     {
@@ -43,7 +54,7 @@ public class LaunchController : MonoBehaviour
             return;
 
         RBD.velocity = MainCam.transform.forward * MaxLaunchSpeed * LaunchSpeedMultipler;
-        RBD.velocity += Vector3.up * VerticalSpeed * LaunchSpeedMultipler;
+        RBD.velocity += Vector3.up * VerticalSpeed;
 
         AudioSource.PlayClipAtPoint(LaunchClip, Camera.main.transform.position);
     }

@@ -65,9 +65,6 @@ public class Dice : MonoBehaviour
     {
         if(_HasBeenHit)
         {
-            Debug.Log("angular velocity: " + RBD.angularVelocity.magnitude + ", velocity: " + RBD.velocity.magnitude);
-
-
             //if the die's current angular velocity is below the min, check which side it's on and set to not be hit any longer.
             if (RBD.angularVelocity.magnitude < MinAngularVelocity && RBD.velocity.magnitude < MinVelocity)
             {
@@ -157,65 +154,43 @@ public class Dice : MonoBehaviour
     {
         List<Vector3> dieFaceDirs = new List<Vector3> { transform.forward, transform.up, transform.right, -transform.forward, -transform.up, -transform.right };
 
-        int i = 0;
+        int upFaceIndex = 0;
+        float minAngle = 180f;
 
-        foreach (Vector3 faceDir in dieFaceDirs)
+        for (int i = 0; i < dieFaceDirs.Count; i++)
         {
-            if (Vector3.Angle(Vector3.up, faceDir) < 50)
-            {
-                switch (i)
-                {
-                    case 0:
-                        return ForwardFace;
-                    case 1:
-                        return UpFace;
-                    case 2:
-                        return RightFace;
-                    case 3:
-                        return BackFace;
-                    case 4:
-                        return DownFace;
-                    case 5:
-                        return LeftFace;
-                    default:
-                        return ForwardFace;
-                }
-            }
+            float faceAngle = Vector3.Angle(Vector3.up, dieFaceDirs[i]);
 
-            i++;
+            //if the angle between the world up vector and a transform direction is < 50, that face is pointing up. Use 50 as it's slightly
+            //larger than 45, the maximum angle
+            if (faceAngle < minAngle)
+            {
+                minAngle = faceAngle;
+                upFaceIndex = i;
+            }
         }
 
-        //for (int i = 0; i < dieFaceDirs.Count; i++)
-        //{
-        //    //if the angle between the world up vector and a transform direction is < 50, that face is pointing up. Use 50 as it's slightly
-        //    //larger than 45, the maximum angle
-        //    if(Vector3.Angle(Vector3.up, dieFaceDirs[i]) < 50)
-        //    {
-        //        switch (i)
-        //        {
-        //            case 0:
-        //                return ForwardFace;
-        //            case 1:
-        //                return UpFace;
-        //            case 2:
-        //                return RightFace;
-        //            case 3:
-        //                return BackFace;
-        //            case 4:
-        //                return DownFace;
-        //            case 5:
-        //                return LeftFace;
-        //            default:
-        //                return ForwardFace;
-        //        }
-        //    }
-        //}
+        switch (upFaceIndex)
+        {
+            case 0:
+                return ForwardFace;
+            case 1:
+                return UpFace;
+            case 2:
+                return RightFace;
+            case 3:
+                return BackFace;
+            case 4:
+                return DownFace;
+            case 5:
+                return LeftFace;
+            default:
+                return ForwardFace;
+        }
 
-        Debug.LogError("correct upright face wasn't found, used forward face by default");
+        Debug.LogWarning("correct upright face wasn't found, used forward face by default");
         return ForwardFace;
     }
-
-
 }
 
 public enum DieFaces

@@ -138,6 +138,9 @@ public class SnailPowerups : MonoBehaviour
 
     private void UpdateNonTimerUI()
     {
+        if (GManager.GameViewUIValues == null)
+            return;
+
         GManager.GameViewUIValues.PowerupLevel.gameObject.SetActive(HasPowerup);
         GManager.GameViewUIValues.PowerupTimer.gameObject.SetActive(HasPowerup);
         GManager.GameViewUIValues.PowerupIcon.gameObject.SetActive(HasPowerup);
@@ -180,7 +183,8 @@ public class SnailPowerups : MonoBehaviour
             PowerupTimer -= Time.deltaTime;
 
             //update UI
-            GManager.GameViewUIValues.PowerupTimer.text = Mathf.Ceil(PowerupTimer).ToString() + "s";
+            if(GManager.GameViewUIValues != null)
+                GManager.GameViewUIValues.PowerupTimer.text = Mathf.Ceil(PowerupTimer).ToString() + "s";
 
             if (CurrentPowerup == DieFaces.Magnet)
                 Magnetize();
