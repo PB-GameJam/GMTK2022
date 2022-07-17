@@ -35,6 +35,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera EndViewCam;
     [SerializeField] private AudioClip EndClip;
 
+    [Header("Tutorial")]
+    [SerializeField] private CinemachineVirtualCamera DiceViewCam;
+    [SerializeField] private CinemachineVirtualCamera BuildingsViewCam;
+    [SerializeField] private TextMeshProUGUI TutorialText;
+
+
     private GameObject MenuUI;
     private GameObject GameUI;
     private GameObject EndUI;
@@ -50,6 +56,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public MenuUIValues GameViewUIValues;
 
     private bool RoundRunning = false;
+
+    private int TutorialIndex = 0;
 
 
     public void Start()
@@ -80,16 +88,54 @@ public class GameManager : MonoBehaviour
             {
                 MenuUI = Instantiate(MenuViewPrefab, UIContainer);
                 MenuUI.GetComponent<CanvasGroup>().DOFade(1F, 0.5F).SetEase(Ease.OutQuad);
-                Player.GetComponentInChildren<PlayerInputHandler>().Jump.Released += StartRound;
+                Player.GetComponentInChildren<PlayerInputHandler>().Jump.Released += ViewNextTutorial;
                 Player.GetComponent<Rigidbody>().isKinematic = false;
             });
 
+        TutorialIndex = 0;
         RoundRunning = false;
+    }
+
+    public void ViewNextTutorial()
+    {
+        TutorialIndex++;
+
+        switch(TutorialIndex)
+        {
+            case 1:
+                Destroy(MenuUI);
+                BuildingsViewCam.Priority = 100;
+                MenuViewCam.Priority = 0;
+                TutorialText.text = "Get Points By Destroying The City!";
+                break;
+            case 2:
+                DiceViewCam.Priority = 100;
+                BuildingsViewCam.Priority = 0;
+                TutorialText.text = "Knock The Dice Around For Powerups And Additional Carnage!";
+                break;
+            case 3:
+                MenuViewCam.Priority = 100;
+                DiceViewCam.Priority = 0;
+                TutorialText.text = "";
+                Player.GetComponentInChildren<PlayerInputHandler>().Jump.Released -= ViewNextTutorial;
+
+                StartCoroutine(StartCountdownCR());
+                break;
+        }
+    }
+
+    IEnumerator StartCountdownCR()
+    {
+        yield return new WaitForSeconds(3F);
+
+        StartRound();
     }
 
     public void StartRound()
     {
+        GameViewCam.Priority = 100;
         MenuViewCam.Priority = 0;
+        
 
         AudioSource.PlayClipAtPoint(StartClip, Camera.main.transform.position);
 
