@@ -51,6 +51,11 @@ public class Destruction : MonoBehaviour
         Debug.Log(this.name + ": " + "Scoring Points by " + Score);
         gameManager.ScorePoints(Score);
         ObjectHitByPlayer.Invoke();
+        foreach(Collider collider in GetComponentsInChildren<Collider>())
+        {
+            collider.enabled = false;
+        }
+
         isDestroyed = true;
 
         if (canSquish)
