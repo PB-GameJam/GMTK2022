@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     private int PointsScored;
     private TextMeshProUGUI PointsTMP;
 
+    private TextMeshProUGUI EndPointsTMP;
+
     private bool RoundRunning = false;
 
 
@@ -103,6 +105,8 @@ public class GameManager : MonoBehaviour
         PointsTMP.text = PointsScored.ToString();
 
 
+
+
         RoundRunning = true;
 
         Destroy(MenuUI);
@@ -149,6 +153,10 @@ public class GameManager : MonoBehaviour
         EndUI = Instantiate(EndViewPrefab, UIContainer);
         EndUI.GetComponent<CanvasGroup>().DOFade(1F, 0.5F)
             .SetEase(Ease.OutQuad);
+
+        //End Score TMP
+        EndPointsTMP = EndUI.GetComponentInChildren<MenuUIValues>().Points;
+        EndPointsTMP.text = PointsScored.ToString();
 
         StartCoroutine(RestartGameCR());
     }
