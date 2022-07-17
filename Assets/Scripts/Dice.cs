@@ -61,6 +61,7 @@ public class Dice : MonoBehaviour
     private void Start()
     {
         TopIndicatorCanvas.enabled = false;
+        RandRot();
     }
 
     private void FixedUpdate()
@@ -144,6 +145,14 @@ public class Dice : MonoBehaviour
         StartCoroutine(RerollDelay());
 
         //StartCoroutine(CheckDiceSideCR(collision.collider.gameObject));
+    }
+
+    private void RandRot()
+    {
+        int x = UnityEngine.Random.Range(0, 3);
+        int y = UnityEngine.Random.Range(0, 3);
+        int z = UnityEngine.Random.Range(0, 3);
+        transform.rotation = Quaternion.Euler(x * 90f, y * 90f, z * 90f);
     }
 
     IEnumerator RerollDelay()

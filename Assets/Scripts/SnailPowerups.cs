@@ -35,6 +35,11 @@ public class SnailPowerups : MonoBehaviour
 
     public bool GetPowerup(DieFaces type)
     {
+        if(GManager == null)
+        {
+            GManager = FindObjectOfType<GameManager>();
+        }
+
         //if this is the same as the current (active) power level / powerup, do nothing.
         if (type == DieFaces.TwoX && PowerupLevel == 2)
             return false;
@@ -63,9 +68,9 @@ public class SnailPowerups : MonoBehaviour
                 break;
         }
 
-        return true;
-
         UpdateNonTimerUI();
+
+        return true;
     }
 
     private void UpdateNewPowerup(int level, DieFaces powerup, bool resetTimer)
@@ -143,7 +148,7 @@ public class SnailPowerups : MonoBehaviour
         if (GManager.GameViewUIValues == null)
             return;
 
-        GManager.GameViewUIValues.PowerupLevel.gameObject.SetActive(HasPowerup);
+        //GManager.GameViewUIValues.PowerupLevel.gameObject.SetActive(HasPowerup);
         GManager.GameViewUIValues.PowerupTimer.gameObject.SetActive(HasPowerup);
         GManager.GameViewUIValues.PowerupIcon.gameObject.SetActive(HasPowerup);
 
@@ -174,7 +179,6 @@ public class SnailPowerups : MonoBehaviour
         SnailLaunch = GetComponent<LaunchController>();
         OriginalScale = transform.localScale;
         Humans = new List<Rigidbody>();
-        GManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame

@@ -5101,15 +5101,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LaunchMultipliers:
-  - 1.5
+  - 1.7
   - 1.7
   - 2
   ScaleMultipliers:
-  - 2
+  - 3.5
   - 3.5
   - 5
   MagnetismForces:
-  - 3
+  - 5
   - 4
   - 5
   PowerupTimerMax: 30
