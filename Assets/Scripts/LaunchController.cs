@@ -8,6 +8,8 @@ public class LaunchController : MonoBehaviour
     [SerializeField] private float VerticalSpeed;
     [SerializeField] private AudioClip LaunchClip;
 
+    public float LaunchSpeedMultipler = 1f;
+
     private GroundDetector GD => Registry.Lookup<GroundDetector>();
     private PlayerInputHandler Input => Registry.Lookup<PlayerInputHandler>();
     private Rigidbody RBD
@@ -40,8 +42,8 @@ public class LaunchController : MonoBehaviour
         if (GD.IsGrounded == false)
             return;
 
-        RBD.velocity = MainCam.transform.forward * MaxLaunchSpeed;
-        RBD.velocity += Vector3.up * VerticalSpeed;
+        RBD.velocity = MainCam.transform.forward * MaxLaunchSpeed * LaunchSpeedMultipler;
+        RBD.velocity += Vector3.up * VerticalSpeed * LaunchSpeedMultipler;
 
         AudioSource.PlayClipAtPoint(LaunchClip, Camera.main.transform.position);
     }

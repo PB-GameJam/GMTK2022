@@ -4999,9 +4999,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67609e1599fd79641a8bf589fef74a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxLaunchSpeed: 40
-  VerticalSpeed: 20
+  MaxLaunchSpeed: 15
+  VerticalSpeed: 10
   LaunchClip: {fileID: 8300000, guid: d938669199346e041b19748c307da3bc, type: 3}
+  LaunchSpeedMultipler: 1
 --- !u!135 &1885160104
 SphereCollider:
   m_ObjectHideFlags: 0
