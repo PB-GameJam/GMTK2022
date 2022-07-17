@@ -36,7 +36,7 @@ public class Dice : MonoBehaviour
     [SerializeField] private Sprite ThreeSprite;
     [SerializeField] private Sprite EnlargeSprite;
     [SerializeField] private Sprite SpeedSprite;
-    [SerializeField] private Sprite AutoAimSprite;
+    [SerializeField] private Sprite MagnetSprite;
 
     public event Action DiceSettled;
 
@@ -71,9 +71,17 @@ public class Dice : MonoBehaviour
             //if the die's current angular velocity is below the min, check which side it's on and set to not be hit any longer.
             if (RBD.angularVelocity.magnitude < MinAngularVelocity && RBD.velocity.magnitude < MinVelocity)
             {
-                Debug.Log(CheckDiceSide(PlayerObj).ToString());
+                DieFaces gotPowerup = CheckDiceSide(PlayerObj);
+
+                Debug.Log(gotPowerup.ToString());
                 _HasBeenHit = false;
                 TopIndicatorCanvas.enabled = false;
+
+                SnailPowerups powerupScript = PlayerObj.GetComponent<SnailPowerups>();
+                if(powerupScript != null)
+                {
+                    powerupScript.GetPowerup(gotPowerup);
+                }
             }
             else
             {
@@ -95,8 +103,8 @@ public class Dice : MonoBehaviour
                     case DieFaces.Speed:
                         TopIndicatorImage.sprite = SpeedSprite;
                         break;
-                    case DieFaces.AutoAim:
-                        TopIndicatorImage.sprite = AutoAimSprite;
+                    case DieFaces.Magnet:
+                        TopIndicatorImage.sprite = MagnetSprite;
                         break;
                     default:
                         break;
@@ -149,11 +157,11 @@ public class Dice : MonoBehaviour
     {
         List<Vector3> dieFaceDirs = new List<Vector3> { transform.forward, transform.up, transform.right, -transform.forward, -transform.up, -transform.right };
 
-        for (int i = 0; i < dieFaceDirs.Count; i++)
+        int i = 0;
+
+        foreach (Vector3 faceDir in dieFaceDirs)
         {
-            //if the angle between the world up vector and a transform direction is < 50, that face is pointing up. Use 50 as it's slightly
-            //larger than 45, the maximum angle
-            if(Vector3.Angle(Vector3.up, dieFaceDirs[i]) < 50)
+            if (Vector3.Angle(Vector3.up, faceDir) < 50)
             {
                 switch (i)
                 {
@@ -173,7 +181,35 @@ public class Dice : MonoBehaviour
                         return ForwardFace;
                 }
             }
+
+            i++;
         }
+
+        //for (int i = 0; i < dieFaceDirs.Count; i++)
+        //{
+        //    //if the angle between the world up vector and a transform direction is < 50, that face is pointing up. Use 50 as it's slightly
+        //    //larger than 45, the maximum angle
+        //    if(Vector3.Angle(Vector3.up, dieFaceDirs[i]) < 50)
+        //    {
+        //        switch (i)
+        //        {
+        //            case 0:
+        //                return ForwardFace;
+        //            case 1:
+        //                return UpFace;
+        //            case 2:
+        //                return RightFace;
+        //            case 3:
+        //                return BackFace;
+        //            case 4:
+        //                return DownFace;
+        //            case 5:
+        //                return LeftFace;
+        //            default:
+        //                return ForwardFace;
+        //        }
+        //    }
+        //}
 
         Debug.LogError("correct upright face wasn't found, used forward face by default");
         return ForwardFace;
@@ -184,5 +220,5 @@ public class Dice : MonoBehaviour
 
 public enum DieFaces
 {
-    TwoX, ThreeX, Enlarge, Speed, AutoAim
+    TwoX, ThreeX, Enlarge, Speed, Magnet
 }

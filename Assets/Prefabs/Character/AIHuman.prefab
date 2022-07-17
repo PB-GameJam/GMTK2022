@@ -85,8 +85,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetDetectTrigger: {fileID: 6742472608852816191}
   TargetTag: Player
-  GoTowardTarget: 1
-  WalkForce: 20
+  GoTowardTarget: 0
+  WalkForce: 10
   JumpForce: 5
   TurnSpeed: 1.5
   MinMoveTimer: 0.5

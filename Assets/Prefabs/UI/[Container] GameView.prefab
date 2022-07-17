@@ -151,6 +151,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timer: {fileID: 910490587}
   Points: {fileID: 0}
+  PowerupText: {fileID: 0}
+  PowerupLevel: {fileID: 0}
+  PowerupTimer: {fileID: 0}
+  PowerupIcon: {fileID: 0}
 --- !u!1 &1591988193
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,12 +303,12 @@ GameObject:
   - component: {fileID: 7877835123667782689}
   - component: {fileID: 777734549153044213}
   m_Layer: 5
-  m_Name: '[TMP] Powerup Multiplier'
+  m_Name: '[TMP] Powerup Level'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &918430632661443747
 RectTransform:
   m_ObjectHideFlags: 0
@@ -715,7 +719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5371840054778593449
 RectTransform:
   m_ObjectHideFlags: 0
@@ -734,7 +738,7 @@ RectTransform:
   m_AnchorMin: {x: 0.10072917, y: 0.9}
   m_AnchorMax: {x: 0.16352084, y: 0.9}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 113.98921}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4384915412584075639
 CanvasRenderer:
@@ -939,6 +943,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timer: {fileID: 3286027166237408657}
   Points: {fileID: 0}
+  PowerupText: {fileID: 0}
+  PowerupLevel: {fileID: 0}
+  PowerupTimer: {fileID: 0}
+  PowerupIcon: {fileID: 0}
 --- !u!1 &5936896863480124584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,7 +1100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &68583709511966953
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1223,7 +1231,7 @@ GameObject:
   - component: {fileID: 4726709457661913854}
   - component: {fileID: 8423104743249296154}
   m_Layer: 5
-  m_Name: '[TMP] Powerup'
+  m_Name: '[TMP] Powerup Text'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1277,7 +1285,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Powerup: overdrive'
+  m_text: Roll dice to power up!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f47c1986935950944b7831b7cb404d77, type: 2}
   m_sharedMaterial: {fileID: -3335746284298394877, guid: f47c1986935950944b7831b7cb404d77,
@@ -1305,7 +1313,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.15
+  m_fontSize: 37.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1418,6 +1426,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timer: {fileID: 3286027166237408657}
   Points: {fileID: 910490587}
+  PowerupText: {fileID: 8423104743249296154}
+  PowerupLevel: {fileID: 777734549153044213}
+  PowerupTimer: {fileID: 8316420171786206009}
+  PowerupIcon: {fileID: 5762343991927306827}
 --- !u!225 &1234231138661003929
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -4870,6 +4870,51 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &3030886627742257590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 423432954095005760}
+  - component: {fileID: 8274923711035292612}
+  m_Layer: 0
+  m_Name: MagnetTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &423432954095005760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3030886627742257590}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3226762078611192942}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &8274923711035292612
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3030886627742257590}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3226762078071702262
 GameObject:
   m_ObjectHideFlags: 0
@@ -4916,6 +4961,7 @@ GameObject:
   - component: {fileID: 1885160104}
   - component: {fileID: 1885160108}
   - component: {fileID: 1885160109}
+  - component: {fileID: 5419121822573094440}
   m_Layer: 0
   m_Name: Snail
   m_TagString: Player
@@ -4941,6 +4987,7 @@ Transform:
   - {fileID: 1408604658210070279}
   - {fileID: 1063303549971942814}
   - {fileID: 4540566273688765856}
+  - {fileID: 423432954095005760}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5041,6 +5088,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 498420ac91bf2434fab8c6196f2afddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5419121822573094440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3226762078611192940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde667719ccac8e4ebb1ebd3b1530e36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LaunchMultipliers:
+  - 1.5
+  - 1.7
+  - 2
+  ScaleMultipliers:
+  - 2
+  - 3.5
+  - 5
+  MagnetismForces:
+  - 3
+  - 4
+  - 5
+  PowerupTimerMax: 30
+  MagnetTrigger: {fileID: 8274923711035292612}
+  EnlargeSprite: {fileID: 21300000, guid: 7dfd9ba4a5e8fca4493334227ee5caeb, type: 3}
+  SpeedSprite: {fileID: 21300000, guid: 887b7a891838ce44da6dc3780c9cef6e, type: 3}
+  MagnetSprite: {fileID: 21300000, guid: 5510917d2c5512f4985a7f58f5581b4b, type: 3}
+  NoPowerupText: Roll dice to power up!
 --- !u!1 &3226762079830588029
 GameObject:
   m_ObjectHideFlags: 0

@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
 
     private TextMeshProUGUI EndPointsTMP;
 
+    [HideInInspector] public MenuUIValues GameViewUIValues;
+
     private bool RoundRunning = false;
 
 
@@ -104,8 +106,8 @@ public class GameManager : MonoBehaviour
         PointsScored = 0;
         PointsTMP.text = PointsScored.ToString();
 
-
-
+        //store gameview UI Values script to update powerup UI
+        GameViewUIValues = GameUI.GetComponent<MenuUIValues>();
 
         RoundRunning = true;
 
