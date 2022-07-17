@@ -33,17 +33,17 @@ public class SnailPowerups : MonoBehaviour
     private DieFaces CurrentPowerup;
     private int PowerupLevel;
 
-    public void GetPowerup(DieFaces type)
+    public bool GetPowerup(DieFaces type)
     {
         //if this is the same as the current (active) power level / powerup, do nothing.
         if (type == DieFaces.TwoX && PowerupLevel == 2)
-            return;
+            return false;
 
         if (type == DieFaces.ThreeX && PowerupLevel == 3)
-            return;
+            return false;
 
         if (type == CurrentPowerup && HasPowerup)
-            return;
+            return false;
 
         //if this is a new level, use that with the current powerup and leave the timer.
         //otherwise, use the new type at level 1 and reset the timer.
@@ -62,6 +62,8 @@ public class SnailPowerups : MonoBehaviour
                 UpdateNewPowerup(1, type, true);
                 break;
         }
+
+        return true;
 
         UpdateNonTimerUI();
     }

@@ -38,6 +38,14 @@ public class Dice : MonoBehaviour
     [SerializeField] private Sprite SpeedSprite;
     [SerializeField] private Sprite MagnetSprite;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip DiceBounceSound;
+    [SerializeField] private AudioClip PowerupSound;
+
+    [Header("UI")]
+    [SerializeField] private Canvas TopIndicatorCanvas;
+    [SerializeField] private Image TopIndicatorImage;
+
     public event Action DiceSettled;
 
     private CollisionTracker CollisionTracker => Registry.Lookup<CollisionTracker>();
@@ -48,8 +56,7 @@ public class Dice : MonoBehaviour
 
     private GameObject PlayerObj;
 
-    [SerializeField] private Canvas TopIndicatorCanvas;
-    [SerializeField] private Image TopIndicatorImage;
+    
 
     private void Start()
     {
@@ -77,7 +84,10 @@ public class Dice : MonoBehaviour
                 SnailPowerups powerupScript = PlayerObj.GetComponent<SnailPowerups>();
                 if(powerupScript != null)
                 {
-                    powerupScript.GetPowerup(gotPowerup);
+                    if (powerupScript.GetPowerup(gotPowerup))
+                    {
+                        AudioSource.PlayClipAtPoint(PowerupSound, Camera.main.transform.position);
+                    }
                 }
             }
             else
@@ -114,6 +124,8 @@ public class Dice : MonoBehaviour
     {
         if (collision.collider.tag != "Player" || !CanBeRolled)
             return;
+
+        AudioSource.PlayClipAtPoint(DiceBounceSound, Camera.main.transform.position);
 
         collision.collider.GetComponent<Rigidbody>().velocity *= DampeningFactor;
         Vector3 knockbackForce = (transform.position - collision.collider.transform.position).normalized * SelfKnockback;
