@@ -2649,6 +2649,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoundTime: 45
   UIContainer: {fileID: 1438169438}
+  PointsTextPrefab: {fileID: 372803548456201434, guid: f747b5909b53b744ba174aa08f38d6bc,
+    type: 3}
+  MinPointsPosX: -300
+  MaxPointsPosX: 300
+  MinPointsPosY: 90
+  MaxPointsPosY: 50
   MenuViewPrefab: {fileID: 8454286857320500689, guid: 8fff2849fec9d644da23e88ece72d2e7,
     type: 3}
   MenuViewCam: {fileID: 440433040}
@@ -5498,6 +5504,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8880444025407595219, guid: eac370e306a65254896ffb987ac3a1b4,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8908504165716721287, guid: eac370e306a65254896ffb987ac3a1b4,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -7287,7 +7298,7 @@ PrefabInstance:
     - target: {fileID: 8986168294244830795, guid: f3794ec7e75919943b9572c0391008b5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.005414665
+      value: -0.0054144682
       objectReference: {fileID: 0}
     - target: {fileID: 8986168294244830795, guid: f3794ec7e75919943b9572c0391008b5,
         type: 3}
@@ -7302,12 +7313,12 @@ PrefabInstance:
     - target: {fileID: 8986168294244830795, guid: f3794ec7e75919943b9572c0391008b5,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0008985796
+      value: 0.0008984984
       objectReference: {fileID: 0}
     - target: {fileID: 8986168294244830795, guid: f3794ec7e75919943b9572c0391008b5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00008369184
+      value: 0.000083684274
       objectReference: {fileID: 0}
     - target: {fileID: 8986168294514200331, guid: f3794ec7e75919943b9572c0391008b5,
         type: 3}

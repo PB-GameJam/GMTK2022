@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private Transform UIContainer;
+    [SerializeField] private GameObject PointsTextPrefab;
+    [SerializeField] private float MinPointsPosX;
+    [SerializeField] private float MaxPointsPosX;
+    [SerializeField] private float MinPointsPosY;
+    [SerializeField] private float MaxPointsPosY;
 
     [Header("Menu")]
     [SerializeField] private GameObject MenuViewPrefab;
@@ -132,6 +137,13 @@ public class GameManager : MonoBehaviour
     public void ScorePoints(int _val)
     {
         PointsScored += _val;
+
+        RectTransform pointsText = Instantiate(PointsTextPrefab, UIContainer).GetComponent<RectTransform>();
+        pointsText.GetComponent<TextMeshProUGUI>().text = $"+{_val}";
+        float xPos = UnityEngine.Random.Range(MinPointsPosX, MaxPointsPosX);
+        float yPos = UnityEngine.Random.Range(MinPointsPosY, MaxPointsPosY);
+        pointsText.anchoredPosition = new Vector2(xPos, yPos);
+
         PointsTMP.text = PointsScored.ToString();
     }
 
