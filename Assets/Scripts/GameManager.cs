@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera DiceViewCam;
     [SerializeField] private CinemachineVirtualCamera BuildingsViewCam;
     [SerializeField] private TextMeshProUGUI TutorialText;
+    [SerializeField] private AudioSource TutorialSource;
 
 
     private GameObject MenuUI;
@@ -118,10 +119,11 @@ public class GameManager : MonoBehaviour
                 DiceViewCam.Priority = 0;
                 TutorialText.text = "";
                 Player.GetComponentInChildren<PlayerInputHandler>().Jump.Released -= ViewNextTutorial;
-
                 StartCoroutine(StartCountdownCR());
                 break;
         }
+
+        TutorialSource.Play();
     }
 
     IEnumerator StartCountdownCR()
