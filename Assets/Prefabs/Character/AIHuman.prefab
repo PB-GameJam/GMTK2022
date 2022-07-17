@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 8965714210878948236}
   - component: {fileID: 7739990943542284151}
   - component: {fileID: 8825478438135942898}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AIHuman
   m_TagString: Untagged
   m_Icon: {fileID: 0}

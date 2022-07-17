@@ -5144,7 +5144,7 @@ MonoBehaviour:
   _collider: {fileID: 3226762079830588024}
   _ignoredLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!1 &3226762079888893785
 GameObject:
   m_ObjectHideFlags: 0
